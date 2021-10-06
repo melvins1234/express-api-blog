@@ -9,6 +9,10 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.on("open", () => console.log(`Connected to Database`));
 
+app.get("/", (req, res) => {
+  res.send(`Hello World`);
+});
+
 // Middleware
 app.use(express.json());
 app.use(cors());
