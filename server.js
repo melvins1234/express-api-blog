@@ -12,7 +12,7 @@ db.on("error", (error) => console.error(error));
 db.on("open", () => console.log(`Connected to Database`));
 
 app.get("/", (req, res) => {
-  res.send(`Hello World`);
+  res.send(process.env.PORT);
 });
 
 // Middleware
