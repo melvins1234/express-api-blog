@@ -12,7 +12,7 @@ db.on("error", (error) => console.error(error));
 db.on("open", () => console.log(`Connected to Database`));
 
 app.get("/", (req, res) => {
-  res.send(process.env.DB_CONNECTION);
+  res.send(process.env.NODE_ENV !== "production");
 });
 
 // Middleware
