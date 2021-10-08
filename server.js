@@ -19,8 +19,12 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(cors());
 
-const blogRouter = require("./routes/blogs");
-app.use("/blogs", blogRouter);
+app.post("/login", (req, res) => {});
+
+app.post("/register", (req, res) => {});
+
+app.use("/blogs", require("./routes/blogs"));
+app.use("/users", require("./routes/users"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
