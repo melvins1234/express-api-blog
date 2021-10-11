@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../models/Blogs");
+const authenticateToken = require("../config/authenticateToken");
 
 // Getting all
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const blog = await Blog.find();
     res.status(200).json(blog);
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 // Getting one
-router.get("/:id", async (req, res) => {
+router.get("/:id", authenticateToken, async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     res.status(200).json(blog);
@@ -23,7 +24,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Creating one
-router.post("/", async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   try {
     const blog = new Blog({
       author_name: req.body.author_name,
@@ -41,7 +42,7 @@ router.post("/", async (req, res) => {
 });
 
 // Updating one
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", authenticateToken, async (req, res) => {
   try {
     const blog = Blog.findByIdAndUpdate(req.params.id, {
       author_name: req.body.author_name,
@@ -58,7 +59,7 @@ router.patch("/:id", async (req, res) => {
 });
 
 // Deleting one
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const blog = Blog.findByIdAndRemove(req.params.id);
     res.status(200).json(blog);
